@@ -321,7 +321,7 @@ This project uses [uv](https://docs.astral.sh/uv/) for dependency management.
 
 ```bash
 # Clone the repository
-git clone https://github.com/just-grok-it/just-grok-it.git
+git clone https://github.com/adarshdigievo/just-grok-it.git
 cd just-grok-it
 
 # Install all development dependencies (recommended)
