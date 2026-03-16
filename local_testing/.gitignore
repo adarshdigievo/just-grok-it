@@ -1,0 +1,2 @@
+# Ignore test results (contains API responses and potentially sensitive info)
+results/

@@ -1,0 +1,83 @@
+[project]
+name = "just-grok-it"
+version = "0.1.0"
+description = "Auto-redirect LLM API requests (OpenAI, Anthropic, Gemini, Mistral, Cohere, OpenRouter) to xAI APIs - Just Grok It!"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+authors = [
+    { name = "Just Grok It Contributors" }
+]
+keywords = [
+    "xai", "grok", "openai", "anthropic", "gemini", "mistral", "cohere",
+    "openrouter", "together", "groq", "llm", "api", "redirect"
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = [
+    # Required for making xAI API calls (for non-OpenAI SDK conversions)
+    "openai>=1.0.0",
+]
+
+[project.optional-dependencies]
+# Provider SDKs (optional - install the ones you want to redirect)
+anthropic = ["anthropic>=0.18.0"]
+gemini = ["google-generativeai>=0.5.0"]
+mistral = ["mistralai>=0.1.0"]
+cohere = ["cohere>=5.0.0"]
+openrouter = ["openrouter>=0.1.0"]
+# All provider SDKs
+all-providers = [
+    "anthropic>=0.18.0",
+    "google-generativeai>=0.5.0",
+    "mistralai>=0.1.0",
+    "cohere>=5.0.0",
+    "openrouter>=0.1.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/just-grok-it/just-grok-it"
+Repository = "https://github.com/just-grok-it/just-grok-it"
+Documentation = "https://github.com/just-grok-it/just-grok-it#readme"
+
+[dependency-groups]
+# Development/testing dependencies (includes all providers and integration test deps)
+dev = [
+    "pytest>=8.0.0",
+    "pytest-asyncio>=0.23.0",
+    "httpx>=0.25.0",
+    # All provider SDKs for full test coverage
+    "anthropic>=0.18.0",
+    "google-generativeai>=0.5.0",
+    "mistralai>=0.1.0",
+    "cohere>=5.0.0",
+    "openrouter>=0.1.0",
+    # Integration test dependencies (mock server)
+    "fastapi>=0.109.0",
+    "uvicorn>=0.27.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+# Note: For local development, use Python 3.14
+# Run: uv python pin 3.14 && uv sync
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/just_grok_it"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
